@@ -3,8 +3,10 @@
 #include <vector>
 using namespace std;
 
+//manggil file kelas
 #include "Spesifikasi.cpp"
 
+//fungsi buwat menu
 void menu(){
     cout << "== Menu Toko Elektronik el Angjay == " << endl;
     cout << "1. Create" << endl;
@@ -14,6 +16,17 @@ void menu(){
     cout << "5. Nyari barang berdasarkan kode" << endl;
     cout << "6. Keluar" << endl;
     cout << "Pilih menu: ";
+}
+
+//fungsi buat nyari kode barang dalam list
+//for loop ke smua barang yg ada dalem vector trus dimatching sama input kode yang dicari
+int carikode(vector<Spesifikasi>& daftarBarang, string kode){
+    for(int i = 0; i < daftarBarang.size(); i++){
+        if(daftarBarang[i].getKode() == kode){
+            return i;//klo nemu, return index
+        }
+    }
+    return -1;//klo engga nemu, return -1
 }
 
 int main(){
@@ -48,6 +61,7 @@ int main(){
     cout << "================================================" <<endl;
     */
 
+    //bikin list yang dnimais pake vector
     vector<Spesifikasi> daftarBarang;
     int pilihan;
 
@@ -62,7 +76,8 @@ int main(){
             //CREATE
             //minta inputan user
             string nama, kode, merk, garansi, tahunproduksi;
-            int stok, daya, berat, harga;
+            int stok, daya, harga;
+            double berat;
             cout << "Masukkan Nama Barang: ";
             //biar getline engga lnsgng keskip
             cin.ignore();
@@ -91,30 +106,30 @@ int main(){
         }
         else if(pilihan == 2){
             //READ
-            cout << "\n== Daftar Barang Toko Elektronik el Angjay ==" << endl;
-            //for looping smua barang yg ada dlm vector dari pertama sampai akhir trus ditampilin pake getter
-            for(int i = 0; i < daftarBarang.size(); i++){
-                cout << i+1 << ". " 
-                << daftarBarang[i].getNama() << " | " 
-                << daftarBarang[i].getKode() << " | " 
-                << daftarBarang[i].getMerk() << " | " 
-                << daftarBarang[i].getStok() << " | " 
-                << daftarBarang[i].getDaya() << " | " 
-                << daftarBarang[i].getBerat() << " | " 
-                << daftarBarang[i].getHarga() << " | " 
-                << daftarBarang[i].getGaransi() << " | " 
-                << daftarBarang[i].getTahunproduksi() << endl;
-                cout << "===========================================================================" <<endl;
-            }
-            cout << "\n";
-
             //klo blm ada isinya, kode bakal ngeprint enih
             if(daftarBarang.empty()){
                 cout << "Belum ada barang beb\n" << endl;
             }
+            else{
+                cout << "\n== Daftar Barang Toko Elektronik el Angjay ==" << endl;
+                //for looping smua barang yg ada dlm vector dari pertama sampai akhir trus ditampilin pake getter
+                for(int i = 0; i < daftarBarang.size(); i++){
+                    cout << i+1 << ". " 
+                    << daftarBarang[i].getNama() << " | " 
+                    << daftarBarang[i].getKode() << " | " 
+                    << daftarBarang[i].getMerk() << " | " 
+                    << daftarBarang[i].getStok() << " | " 
+                    << daftarBarang[i].getDaya() << " | " 
+                    << daftarBarang[i].getBerat() << " | " 
+                    << daftarBarang[i].getHarga() << " | " 
+                    << daftarBarang[i].getGaransi() << " | " 
+                    << daftarBarang[i].getTahunproduksi() << endl;
+                    cout << "===========================================================================" <<endl;
+                }
+                cout << "\n";
+            }
 
         }
-        /*
         else if(pilihan == 3){
             //UPDATE
             string kode;
@@ -127,19 +142,36 @@ int main(){
             //klo nemu kodenya, lgsng bisa update
             if(idx != -1){
                 //minta input user buwat update
-                string namaBaru;
-                int stokBaru, hargaBaru;
-                cout << "Masukkan nama baru: ";
+                string namaBaru, merkBaru, garansiBaru, tahunproduksiBaru;
+                int stokBaru, dayaBaru, hargaBaru;
+                double beratBaru;
+                cout << "Masukkan Nama barang baru: ";
                 getline(cin, namaBaru);
-                cout << "Masukkan stok baru: ";
+                cout << "Masukkan Merk barang baru: ";
+                getline(cin, merkBaru);
+                cout << "Masukkan Stok barang baru: ";
                 cin >> stokBaru;
-                cout << "Masukkan harga baru: ";
+                cout << "Masukkan Daya barang baru: ";
+                cin >> dayaBaru;
+                cout << "Masukkan Berat barang baru: ";
+                cin >> beratBaru;
+                cout << "Masukkan Harga barang baru: ";
                 cin >> hargaBaru;
+                cin.ignore();
+                cout << "Masukkan Garansi barang baru: ";
+                getline(cin, garansiBaru);
+                cout << "Masukkan Tahun Produksi barang baru: ";
+                getline(cin, tahunproduksiBaru);
 
                 //ngupdate pake setter
-                daftarBarang[idx].setNamabarang(namaBaru);
+                daftarBarang[idx].setNama(namaBaru);
+                daftarBarang[idx].setMerk(merkBaru);
                 daftarBarang[idx].setStok(stokBaru);
+                daftarBarang[idx].setDaya(dayaBaru);
+                daftarBarang[idx].setBerat(beratBaru);
                 daftarBarang[idx].setHarga(hargaBaru);
+                daftarBarang[idx].setGaransi(garansiBaru);
+                daftarBarang[idx].setTahunproduksi(tahunproduksiBaru);
 
                 cout << "Barang berhasil diupdate!\n" << endl;
             }
@@ -180,7 +212,16 @@ int main(){
             int idx = carikode(daftarBarang, kode);
             //klo nemu, print barang ditemukan
             if(idx != -1){
-                cout << "Barang ditemukan: " << daftarBarang[idx].getNamabarang() << " | " << daftarBarang[idx].getKodebarang() << " | " << daftarBarang[idx].getStok() << " | " << daftarBarang[idx].getHarga() << "\n" << endl;
+                cout << "Barang ditemukan: " 
+                << daftarBarang[idx].getNama() << " | " 
+                << daftarBarang[idx].getKode() << " | " 
+                << daftarBarang[idx].getMerk() << " | " 
+                << daftarBarang[idx].getStok() << " | " 
+                << daftarBarang[idx].getDaya() << " | " 
+                << daftarBarang[idx].getBerat() << " | " 
+                << daftarBarang[idx].getHarga() << " | " 
+                << daftarBarang[idx].getGaransi() << " | " 
+                << daftarBarang[idx].getTahunproduksi() << endl;
             }
             //klo engga nemu, print enih
             else{
@@ -188,7 +229,6 @@ int main(){
             }
 
         }
-            */
         //pilihan buat kluwar program. ntar print pesan pamit
         else if(pilihan == 6){
             cout << "Bye bye. Maacih :P\n" << endl;
@@ -203,6 +243,9 @@ int main(){
 	return 0;
 }
 
+//jgn lupa ygy :D
 //g++ -c *.cpp
 //g++ Main.cpp Produk.cpp -o Produk.exe
+//g++ Main.cpp Detail.cpp -o Detail.exe
+//g++ Main.cpp Spesifikasi.cpp -o Spesifikasi.exe
 //spesifikasi.exe

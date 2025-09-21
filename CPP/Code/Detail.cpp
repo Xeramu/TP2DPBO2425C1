@@ -7,11 +7,11 @@ class Detail : public Produk{
 	private:
 		int stok;
 		int daya;
-		int berat;
+		double berat;
 
 	public:
 
-		Detail(string nama, string kode, string merk, int stok, int daya, int berat) : Produk(nama, kode, merk) {
+		Detail(string nama, string kode, string merk, int stok, int daya, double berat) : Produk(nama, kode, merk) {
             this->stok = stok;
             this->daya = daya;
             this->berat = berat;
@@ -33,11 +33,11 @@ class Detail : public Produk{
 			return this->daya;
 		}
 		
-		void setBerat(int berat) {
+		void setBerat(double berat) {
 			this->berat = berat;
 		}
 		
-		int getBerat() {
+		double getBerat() {
 			return this->berat;
 		}
 		
