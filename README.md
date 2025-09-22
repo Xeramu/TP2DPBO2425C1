@@ -47,4 +47,7 @@ Public
 <img width="921" height="516" alt="Screenshot 2025-09-22 124009" src="https://github.com/user-attachments/assets/4631642e-4789-4b61-bdd4-4c012d92c4e0" />
   
 - Python
+
+  <img width="1224" height="756" alt="Screenshot 2025-09-22 163606" src="https://github.com/user-attachments/assets/9ed130fd-5b1a-4a46-a124-d28a33995f54" />
+
 - PHP
