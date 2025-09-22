@@ -1,6 +1,6 @@
 Kulkas
 006
-usus
+GLO
 10
 65
 2,5
