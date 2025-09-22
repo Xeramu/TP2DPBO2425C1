@@ -8,7 +8,7 @@ $daftarBarang = [
     new Spesifikasi("Mouse", "002", "Ligotech", 20, 5, 0.2, 150000, "1", "2020", "img/mieayam.jpg"),
     new Spesifikasi("Keyboard", "003", "Rozor", 15, 10, 0.5, 500000, "1", "2019", "img/java.jpg"),
     new Spesifikasi("Monitor", "004", "Smasmug", 5, 40, 4.5, 2500000, "2", "2021", "img/cobra.jpg"),
-    new Spesifikasi("Printer", "005", "PH", 8, 100, 6.0, 1200000, "1", "2018", "img/aycabron.jpg"),
+    new Spesifikasi("Printer", "005", "PH", 8, 100, 6.0, 1200000, "1", "2018", "img/aycabron.jpeg"),
 ];
 ?>
 <!DOCTYPE html>
