@@ -9,12 +9,14 @@ class Spesifikasi extends Detail {
     private int $harga;
     private string $garansi;
     private string $tahunproduksi;
+    private string $gambar;
 
-    public function __construct(string $nama, string $kode, string $merk, int $stok, int $daya, float $berat, int $harga, string $garansi, string $tahunproduksi) {
+    public function __construct(string $nama, string $kode, string $merk, int $stok, int $daya, float $berat, int $harga, string $garansi, string $tahunproduksi, string $gambar) {
         parent::__construct($nama, $kode, $merk, $stok, $daya, $berat);
         $this->setHarga($harga);
         $this->garansi = $garansi;
         $this->tahunproduksi = $tahunproduksi;
+        $this->gambar = $gambar;
     }
 
     //getter setter atributs
@@ -37,5 +39,12 @@ class Spesifikasi extends Detail {
     }
     public function setTahunproduksi(string $tahunproduksi): void { 
         $this->tahunproduksi = $tahunproduksi; 
+    }
+
+    public function getGambar(): string { 
+        return $this->gambar;
+     }
+    public function setGambar(string $gambar): void { 
+        $this->gambar = $gambar; 
     }
 }
