@@ -1,6 +1,7 @@
 <?php
 class Produk {
 
+    //atributs
     private string $nama;
     private string $kode;
     private string $merk;
@@ -11,6 +12,7 @@ class Produk {
         $this->merk = $merk;
     }
 
+    //getter setter atributs
     public function getNama(): string { 
         return $this->nama; 
     }

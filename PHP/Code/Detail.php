@@ -1,8 +1,10 @@
 <?php
 
+//manggil produk.php
 require_once "Produk.php";
 
 class Detail extends Produk {
+    //atribts
     private int $stok;
     private int $daya;
     private float $berat;
@@ -14,6 +16,7 @@ class Detail extends Produk {
         $this->setBerat($berat);
     }
 
+    //getter stter
     public function getStok(): int { 
         return $this->stok;
     }

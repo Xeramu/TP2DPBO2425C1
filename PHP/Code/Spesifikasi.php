@@ -1,8 +1,11 @@
 <?php
 
+//manggil detail.php
 require_once "Detail.php";
 
 class Spesifikasi extends Detail {
+
+    //atributs
     private int $harga;
     private string $garansi;
     private string $tahunproduksi;
@@ -14,6 +17,7 @@ class Spesifikasi extends Detail {
         $this->tahunproduksi = $tahunproduksi;
     }
 
+    //getter setter atributs
     public function getHarga(): int { 
         return $this->harga;
     }
