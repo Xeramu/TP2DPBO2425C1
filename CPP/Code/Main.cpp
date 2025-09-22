@@ -1,6 +1,10 @@
 #include <string>
 #include <iostream>
 #include <vector>
+
+//buat print tabel yg dinamis
+#include <iomanip>
+
 using namespace std;
 
 //manggil file kelas
@@ -8,7 +12,7 @@ using namespace std;
 
 //fungsi buwat menu
 void menu(){
-    cout << "== Menu Toko Elektronik el Angjay == " << endl;
+    cout << "\n== Menu Toko Elektronik el Angjay == " << endl;
     cout << "1. Create" << endl;
     cout << "2. Read" << endl;
     cout << "3. Update" << endl;
@@ -30,36 +34,6 @@ int carikode(vector<Spesifikasi>& daftarBarang, string kode){
 }
 
 int main(){
-
-    /*
-	Spesifikasi barang1("Laptop", "001", "Asus", 10, 65, 2.5, 8000000, "2", "2012");
-    Spesifikasi barang2("Mouse", "002", "Usus", 16, 40, 5.2, 50000, "2", "2016");
-
-    cout << "================================================" <<endl;
-    cout << "Barang 1:" <<endl;
-    cout << "Nama   : " << barang1.getNama() << endl;
-    cout << "Kode   : " << barang1.getKode() << endl;
-    cout << "Merk   : " << barang1.getMerk() << endl;
-    cout << "Stok   : " << barang1.getStok() << endl;
-    cout << "Daya   : " << barang1.getDaya() << " Watt" << endl;
-    cout << "Berat  : " << barang1.getBerat() << " Kg" << endl;
-    cout << "Harga  : Rp " << barang1.getHarga() << endl;
-    cout << "Garansi: " << barang1.getGaransi() << " Tahun" << endl;
-    cout << "Tahun Produksi : " << barang1.getTahunproduksi() << endl;
-    cout << "================================================" <<endl;
-
-    cout << "Barang 2:" <<endl;
-    cout << "Nama   : " << barang2.getNama() << endl;
-    cout << "Kode   : " << barang2.getKode() << endl;
-    cout << "Merk   : " << barang2.getMerk() << endl;
-    cout << "Stok   : " << barang2.getStok() << endl;
-    cout << "Daya   : " << barang2.getDaya() << " Watt" << endl;
-    cout << "Berat  : " << barang2.getBerat() << " Kg" << endl;
-    cout << "Harga  : Rp " << barang2.getHarga() << endl;
-    cout << "Garansi: " << barang2.getGaransi() << " Tahun" << endl;
-    cout << "Tahun Produksi : " << barang2.getTahunproduksi() << endl;
-    cout << "================================================" <<endl;
-    */
 
     //bikin list yang dnimais pake vector
     vector<Spesifikasi> daftarBarang;
@@ -111,22 +85,40 @@ int main(){
                 cout << "Belum ada barang beb\n" << endl;
             }
             else{
-                cout << "\n== Daftar Barang Toko Elektronik el Angjay ==" << endl;
+                cout << "\n== Daftar Barang Toko Elektronik el Angjay ==\n" << endl;
+                //header tabel
+                cout << left 
+                << setw(5)  << "No"
+                << setw(15) << "Nama"
+                << setw(10) << "Kode"
+                << setw(12) << "Merk"
+                << setw(8)  << "Stok"
+                << setw(8)  << "Daya"
+                << setw(10) << "Berat"
+                << setw(12) << "Harga"
+                << setw(10) << "Garansi"
+                << setw(15) << "Tahun Produksi"
+                << endl;
+
+                cout << string(110, '=') << endl;//garis pembatas
+
                 //for looping smua barang yg ada dlm vector dari pertama sampai akhir trus ditampilin pake getter
+                //isi tabel
                 for(int i = 0; i < daftarBarang.size(); i++){
-                    cout << i+1 << ". " 
-                    << daftarBarang[i].getNama() << " | " 
-                    << daftarBarang[i].getKode() << " | " 
-                    << daftarBarang[i].getMerk() << " | " 
-                    << daftarBarang[i].getStok() << " | " 
-                    << daftarBarang[i].getDaya() << " | " 
-                    << daftarBarang[i].getBerat() << " | " 
-                    << daftarBarang[i].getHarga() << " | " 
-                    << daftarBarang[i].getGaransi() << " | " 
-                    << daftarBarang[i].getTahunproduksi() << endl;
-                    cout << "===========================================================================" <<endl;
+                    cout << left
+                    << setw(5)  << i+1
+                    << setw(15) << daftarBarang[i].getNama()
+                    << setw(10) << daftarBarang[i].getKode()
+                    << setw(12) << daftarBarang[i].getMerk()
+                    << setw(8)  << daftarBarang[i].getStok()
+                    << setw(8)  << daftarBarang[i].getDaya()
+                    << setw(10) << daftarBarang[i].getBerat()
+                    << setw(12) << daftarBarang[i].getHarga()
+                    << setw(10) << daftarBarang[i].getGaransi()
+                    << setw(15) << daftarBarang[i].getTahunproduksi()
+                    << endl;
                 }
-                cout << "\n";
+                cout << endl;
             }
 
         }
@@ -197,7 +189,7 @@ int main(){
             } 
             //klo engga nemy, print enih
             else{
-                cout << "Barang dengan kode " << kode << " tidak ditemukan!\n" << endl;
+                cout << "Engga nemu barang dengan kode: " << kode << " bang\n" << endl;
             }
 
         }
@@ -212,16 +204,36 @@ int main(){
             int idx = carikode(daftarBarang, kode);
             //klo nemu, print barang ditemukan
             if(idx != -1){
-                cout << "Barang ditemukan: " 
-                << daftarBarang[idx].getNama() << " | " 
-                << daftarBarang[idx].getKode() << " | " 
-                << daftarBarang[idx].getMerk() << " | " 
-                << daftarBarang[idx].getStok() << " | " 
-                << daftarBarang[idx].getDaya() << " | " 
-                << daftarBarang[idx].getBerat() << " | " 
-                << daftarBarang[idx].getHarga() << " | " 
-                << daftarBarang[idx].getGaransi() << " | " 
-                << daftarBarang[idx].getTahunproduksi() << endl;
+                cout << "Barang ditemukan: " << endl;
+                cout << "\n== Daftar Barang Toko Elektronik el Angjay ==\n" << endl;
+                //header tabel
+                cout << left 
+                << setw(15) << "Nama"
+                << setw(10) << "Kode"
+                << setw(12) << "Merk"
+                << setw(8)  << "Stok"
+                << setw(8)  << "Daya"
+                << setw(10) << "Berat"
+                << setw(12) << "Harga"
+                << setw(10) << "Garansi"
+                << setw(15) << "Tahun Produksi"
+                << endl;
+
+                cout << string(110, '=') << endl;//garis pembatas
+
+                //for looping smua barang yg ada dlm vector dari pertama sampai akhir trus ditampilin pake getter
+                //isi tabel
+                cout << left
+                << setw(15) << daftarBarang[idx].getNama()
+                << setw(10) << daftarBarang[idx].getKode()
+                << setw(12) << daftarBarang[idx].getMerk()
+                << setw(8)  << daftarBarang[idx].getStok()
+                << setw(8)  << daftarBarang[idx].getDaya()
+                << setw(10) << daftarBarang[idx].getBerat()
+                << setw(12) << daftarBarang[idx].getHarga()
+                << setw(10) << daftarBarang[idx].getGaransi()
+                << setw(15) << daftarBarang[idx].getTahunproduksi()
+                << endl;            
             }
             //klo engga nemu, print enih
             else{
